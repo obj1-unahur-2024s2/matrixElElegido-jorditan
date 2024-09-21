@@ -1,9 +1,34 @@
 
 
-describe "group of tests " {
+import matrix.*
 
-  test "test 01" {
-    assert.equals(100, 50+50)
+describe "group of tests " {
+  test "Cuando neo salta su vitalidad pasa a ser de 5" {
+    neo.saltar()
+
+    assert.equals(5, neo.vitalidad())
+  }
+
+  test "Cuando morfeo salta, su vitalidad disminuye en 1 y pasa a estar descansado" {
+    const vitalidadInicial = morfeo.vitalidad()
+    morfeo.saltar()
+
+    assert.equals( vitalidadInicial-1, morfeo.vitalidad())
+    assert.that(!morfeo.descansado())
+  }
+
+  test "Cuando la nave choca, todos sus pasajeros bajan" {
+    nave.chocar()
+
+    assert.equals([], nave.pasajeros())
+  }
+
+  test "cuando la nave acelera, la vitalidad de neo se mantiene igual, la de trinity también y la de morfeo disminuye a 7" {
+    nave.acelerar()
+
+    assert.equals(10, neo.vitalidad())
+    assert.equals(0, trinity.vitalidad())
+    assert.equals(7, morfeo.vitalidad())
   }
 
 }
